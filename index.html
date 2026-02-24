@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binance Leverage Calculator</title>
+    <link rel="icon" href="icons.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="calculator-container glass-panel">
+        <header>
+            <div class="logo-wrapper">
+                <i class="ri-funds-box-fill logo-icon"></i>
+            </div>
+            <h1>Position <span>Calculator</span></h1>
+            <p>Auto-calculate your optimal leverage and risk</p>
+        </header>
+
+        <form id="calc-form" autocomplete="off">
+            <div class="input-grid">
+                <!-- Wallet Balance -->
+                <div class="input-group">
+                    <label for="walletBalance">Wallet Balance (USD)</label>
+                    <div class="input-wrapper">
+                        <i class="ri-wallet-3-line"></i>
+                        <input type="number" id="walletBalance" placeholder="e.g. 100" step="any" required>
+                    </div>
+                </div>
+
+                <!-- Risk Amount (%) -->
+                <div class="input-group">
+                    <label for="riskAmount">Risk Amount (%)</label>
+                    <div class="input-wrapper">
+                        <i class="ri-percent-line"></i>
+                        <input type="number" id="riskAmount" placeholder="e.g. 2" step="any" required>
+                    </div>
+                </div>
+
+                <!-- Entry Price -->
+                <div class="input-group">
+                    <label for="entryPrice">Entry Price</label>
+                    <div class="input-wrapper">
+                        <i class="ri-arrow-right-circle-line"></i>
+                        <input type="number" id="entryPrice" placeholder="e.g. 20" step="any" required>
+                    </div>
+                </div>
+
+                <!-- SL Price -->
+                <div class="input-group">
+                    <label for="slPrice">Stop Loss Price</label>
+                    <div class="input-wrapper">
+                        <i class="ri-stop-circle-line"></i>
+                        <input type="number" id="slPrice" placeholder="e.g. 19" step="any" required>
+                    </div>
+                </div>
+
+                <!-- Funding Rate -->
+                <div class="input-group full-width">
+                    <label for="fundingRate">Funding Fee (%)</label>
+                    <div class="input-wrapper">
+                        <i class="ri-money-dollar-circle-line"></i>
+                        <input type="number" id="fundingRate" placeholder="e.g. 0.01" value="0.01" step="any" required>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" id="calculateBtn" class="btn-primary">
+                Calculate Position
+                <i class="ri-calculator-line"></i>
+            </button>
+        </form>
+
+        <div class="results-container" id="results" style="display: none;">
+            <div class="direction-indicator" id="tradeDirection">
+                <span class="badge">Long</span>
+            </div>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-icon"><i class="ri-error-warning-line"></i></div>
+                    <div class="result-info">
+                        <h3>Risk Amount</h3>
+                        <p id="resRiskAmount" class="highlight">$0.00</p>
+                    </div>
+                </div>
+
+                <div class="result-card important">
+                    <div class="result-icon"><i class="ri-rocket-2-line"></i></div>
+                    <div class="result-info">
+                        <h3>Auto Leverage</h3>
+                        <p id="resLeverage" class="highlight glow">0.00x</p>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-icon"><i class="ri-exchange-dollar-line"></i></div>
+                    <div class="result-info">
+                        <h3>Position (USD)</h3>
+                        <p id="resPositionUsd">$0.00</p>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-icon"><i class="ri-coins-line"></i></div>
+                    <div class="result-info">
+                        <h3>Position (Coins)</h3>
+                        <p id="resPositionCoins">0.000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>Developed by <a href="https://www.linkedin.com/in/rashintha-lakshan-a14842291/" target="_blank"
+                rel="noopener noreferrer">Rash
+                Lakshan</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
